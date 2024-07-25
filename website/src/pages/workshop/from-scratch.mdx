@@ -1,0 +1,241 @@
+---
+title: Approaches to from-scratch live coding
+layout: ../../layouts/MainLayout.astro
+---
+
+import { MiniRepl } from '@src/docs/MiniRepl';
+import Box from '@components/Box.astro';
+import QA from '@components/QA';
+
+# Approaches to from-scratch live coding
+This workshop will help you understand how to prepare for a 'from-scratch' live coding performance.
+
+* We won't spend time focusing on correct syntax and how to write code
+* We will explore strategies to prepare for improvised performance using code
+* If you're a beginner then use the code provided as a starting point - if you get stuck then I will come round and help you during the exercises
+* I will explain some of my approaches and then let you do your own experiments
+* At the end I'd like us all to share something we've worked on, or maybe we can have a little jam session
+
+# Getting started
+We can write and run code interactively in this worksheet - press the play button or hit `Ctrl+Enter`. Hit the stop button or `Ctrl+.` to stop the sound.
+
+Later we will move on to using the main Strudel editor (click `go to REPL` in the top right), but it works in the same way as the code snippets on this page.
+
+Feel free to edit any of the code you see - you can always refresh the page to get the original worksheet back.
+
+Finally... improvised performance is highly personal, I want to share my approach to try to demystify the process, but of course this may not resonate with you (**Remember - Energy: yes! Quality: no!**). If you prefer then please use your own language, sounds and functions!
+
+# Links
+* [Workshop slides](https://docs.google.com/presentation/d/1cxvQfWhz90lQCzJutAdy8_YfObKl_7vloMZn-31mo7w/edit?usp=sharing)
+* [TidalCycles blog post about from-scratch](https://tidalcycles.org/blog/tidal_profile_heavylifting/)
+* [Chatty live code video](https://www.youtube.com/watch?v=vrKJySfd8AE)
+
+
+# Creative limitations - selecting functions
+Strudel has a _lot_ of functions (To check them out click `go to REPL > Reference`) - this can be a problem for from-scratch performance:
+
+* it's not practical to memorise all these
+* in the moment on stage we want to simplify our decision making
+* some of them require complex syntax and/or a lot of typing
+
+So let's choose some favourites to work with. I'm going to go through a few of mine here and how I use them, but if you're more experienced you might want to choose your own.
+
+## Working with short sounds
+Let's start by writing some simple patterns and slowly adding complexity.
+
+`{}` - for polyrhythms:
+<MiniRepl client:visible tune={`$: sound("{bd bd/1 bd/2 bd/3, ~ ~ hh [~ cp] hh*3}")`} dirt />
+
+[Euclidian rhythms](https://en.wikipedia.org/wiki/Euclidean_rhythm)
+<MiniRepl client:visible tune={`$: sound("{bd bd/1 bd/2 bd/3, ~ ~ hh [~ cp] hh*3}")
+
+$: sound("metal(3,8)")`} dirt />
+
+`hurry`
+<MiniRepl client:visible tune={`$: sound("{bd bd/1 bd/2 bd/3, ~ ~ hh [~ cp] hh*3}")
+
+$: sound("metal(3,8)")
+.hurry("<1 1 2 4>")`} dirt />
+
+Density (aka `fast`/`slow`)
+<MiniRepl client:visible tune={`$: sound("{bd bd/1 bd/2 bd/3, ~ ~ hh [~ cp] hh*3}")
+.fast("1 <1 2>")
+
+$: sound("metal(3,8)")
+.hurry("<1 1 2 4>")`} dirt />
+
+### Exercise - 10 mins
+Try writing some patterns using very simple functions and just a few short sounds.
+
+Tips:
+* You can use the functions/sounds I've used above, or use some others if you know them
+* The point is to try to make something you like the sound of *without writing a lot of code*
+* Don't be afraid to delete and start again - from-scratch is ephemeral by nature!
+* Try to really limit the number of sounds for now (we'll get onto sound selection in a bit)
+* If you really want to try some other sounds, how about using some of these: `insect wind jazz metal east crow casio space numbers`
+<MiniRepl client:visible tune={`// your code here`} dirt />
+
+## Working with patterns
+Next we'll try manipulating the patterns we've described above.
+
+`iter` cycles through the pattern starting at different points, it's great for adding variety over time
+
+<MiniRepl client:visible tune={`$: sound("{bd bd/1 bd/2 bd/3, ~ ~ hh [~ cp] hh*3}")
+.fast("1 <1 2>")
+
+$: sound("metal(3,8)")
+.hurry("<1 1 2 4>")
+.iter("4")`} dirt />
+
+`jux` lets us apply a transformation in one speaker only giving us a stereo effect
+<MiniRepl client:visible tune={`$: sound("{bd bd/1 bd/2 bd/3, ~ ~ hh [~ cp] hh*3}")
+.fast("1 <1 2>")
+
+$: sound("metal(3,8)")
+.hurry("<1 1 2 4>")
+.jux(iter("4"))`} dirt />
+
+`sometimes`/`often`/`every`/etc let us apply transformations over time
+
+<MiniRepl client:visible tune={`$: sound("{bd bd/1 bd/2 bd/3, ~ ~ hh [~ cp] hh*3}")
+.fast("1 <1 2>")
+
+$: sound("metal(3,8)")
+.hurry("<0.5 1 1 2>")
+.jux(iter("4"))
+.every(2, fast(2))`} dirt />
+
+`chunk` is another good way to add interest over time - it divides the patterns into _n_ chunks and applies a transformation to a different chunk each cycle
+<MiniRepl client:visible tune={`$: sound("{bd bd/1 bd/2 bd/3, ~ ~ hh [~ cp] hh*3}")
+.fast("1 <1 2>")
+
+$: sound("metal(3,8)")
+.hurry("<0.5 1 1 2>")
+.jux(iter("4"))
+.every(2, fast(2))
+
+$: sound("wind*8?")
+.legato("1")
+.chunk(4, hurry("<2 0.5>"))`} dirt />
+
+The last function I want to look at here is `off`, which applies a transformation on version of the pattern which is shifted by the specified amount
+
+I use this a lot in Tidal but the syntax is a little more tricky in Strudel... this would be about the limit of what I would try to type from memory in a live setting!
+
+<MiniRepl client:visible tune={`$: sound("{bd bd/1 bd/2 bd/3, ~ ~ hh [~ cp] hh*3}")
+.fast("1 <1 2>")
+.off(0.125, x=>x.speed(2))
+
+$: sound("metal(3,8)")
+.hurry("<0.5 1 1 2>")
+.jux(iter("4"))
+.every(2, fast(2))
+
+$: sound("wind*8?")
+.legato("1")
+.chunk(4, hurry("<2 0.5>"))`} dirt />
+
+### Exercise - 10 mins
+Take your pattern from the first exercise and try applying some pattern manipulations. 
+
+Tips:
+* You can use the functions I've used above, or use some others if you know them
+* The process is to start with something simple and iteratively add complexity
+* Again try to limit the sounds you're using to just a few samples
+* Don't worry too much about your code, just play about with different combinations and see if you can find something you like the sound of
+
+<MiniRepl client:visible tune={`// your code here`} dirt />
+
+## Working with longer sounds
+Longer samples require a different approach, and can cause us some problems in on-the-fly performances if we're not careful.
+
+Strudel doesn't come with many long samples so we're going to load some in from the internet for these examples - for more info on this see `Making sound > Samples > Loading Custom Samples`
+
+`loopAt` lets us sync a sample to the cycle. This is especially helpful for working with loops.
+
+<MiniRepl client:visible tune={`samples({ rhodes: 'https://cdn.freesound.org/previews/132/132051_316502-lq.mp3' })
+
+$: sound("rhodes")
+.loopAt(2)`} dirt />
+
+As well as a basic loop we can play about with the parameters of `loopAt`
+
+<MiniRepl client:visible tune={`$: sound("rhodes*4")
+.loopAt("<4 <1 2>>")
+.cut(1)
+.iter(4)
+.chop("<1 1 2 4>")
+
+$: sound("{bd bd/1 bd/2 bd/3, ~ ~ hh [~ cp] hh}")
+.every(4, (slow(2)))`} dirt />
+
+A different approach uses `slice` to chop our sample into bits and then pattern those bits. Again very useful when working with loops.
+
+<MiniRepl client:visible tune={`
+samples('github:tidalcycles/dirt-samples')
+
+$: sound("breaks165")
+.slice(8, "7 6 [2 4] 3")
+.chunk(4, hurry(2))
+
+$: sound("{bd bd/1 bd/2 bd/3, ~ ~ hh [~ cp] hh}")
+.jux(iter(4))`} dirt />
+
+If you're using Tidal there's also a lovely function called randslice, which slices the sample into _n_ parts and then plays you one back at random each time it's triggered. It's such an unloved function it seems to sadly not exist in Strudel :(
+
+### Exercise - 10 mins
+Try creating a pattern using some longer samples.
+Tips: 
+* Feel free to use the functions above, or if you know some others then give them a go
+* Can you create complentary pattern of short sounds? Use your ear to decide what sounds good
+* Iterate on your patterns using the techniques you know
+* Think about chaining together simple functions to build complexity over time
+* Again, try to really limit the number of sounds you're using - this is about getting used to what you can do with the functions.
+* If you're feeling confident try to do it without looking at the reference
+* Remember - if you don't like where it's going, delete it and start again!
+* Even if you like where it's going try to get used to deleting and re-creating your patterns
+* Now we've loaded in the TidalCycles samples here are a few more longer sounds you might want to play about with: `pebbles break foo birds`
+
+<MiniRepl client:visible tune={`//your code here`} dirt />
+
+# Sound palettes
+Now we've got a set of functions that we're comfortable with using, let's start thinking about expanding our palette of sounds.
+
+When I'm selecting sounds I think about having a few samples in each of these categories (yours may vary!):
+* Percussive sounds
+* Bass sounds
+* Lead sounds
+* Textural/weird sounds
+
+I might also think about incorporating some kind of stand out sounds - e.g. [Skeletors insults](https://www.youtube.com/watch?v=DC0X9AyA2f0), [woodworking samples](https://freesound.org/search/?q=wood), [a nice hardware synth](https://waldorfmusic.com/legacy-rocket/) etc etc
+
+I try to think about how these sounds work well together, and how well they work with my favourite functions.
+
+In reality this is an iterative process - I will go back and forwards between sounds and functions, and the selection evolves over time.
+
+## Exercise - 20 mins
+Find some sounds!
+Tips:
+* Let's graduate to the main Strudel interface - click REPL in the top right or go to [soc-of-ex.club](https://soc-of-ex.club)
+* From here if you click 'sounds' you can start to explore all the samples, synths and drum machines that are available to you
+* There's lots of information on how to use these in the Learn pages, but for now lets just keep it super simple with the functions we've learned above.
+* If you're a beginner there will probably be plenty in here to keep you occupied. If you're more experienced you might want to bring in some of your own sounds - you can search on freesound or upload samples from your computer. If you need some instructions on how to do this then click [Learn > Making Sound > Samples > Loading Custom Samples](learn/samples/#loading-custom-samples)
+* When you find a sound you're interesting in then try playing about with it using some of your chosen functions, think about what sounds good to you and how different types of sound work in different contexts
+* Try to find 5-10 sounds that you like and feel you can work with
+
+Bonus - add some effects!
+* I actually don't tend to use too many audio effects, but there are _loads_ available.
+* Some of my favourites are `vowel`, `shape`, `speed`, `hpf`, `lpf`
+* Try applying these to the sounds/patterns you're working on and see what sounds good.
+
+# Bringing it all together
+Let's practice! 
+* We'll work on some short sketches using our favourite functions and sounds. 
+* You don't need enough here for a full performance - remember this is just a workshop! 
+* If you can, try to avoid referring to the documentation
+* Don't be precious about your code - if you're not happy with how it sounds, delete it and start again
+* If you're happy with how it sounds delete it and try to recreate a similar feel
+* Don't try to plan out in advance what it will sound like - use your ear and respond to what you hear.
+* Generally speaking if you are bored with a sound then it's probably time to change it - however, this isn't a live performance, it's a preparation, so feel comfortable with a bit of repetition (if you've ever learned a traditional instrument you will know how important repetition is if you want to improve!)
+
+Remember - ENERGY: YES! QUALITY: NO! - you're not looking for a perfect polished track, but something that feels good to you

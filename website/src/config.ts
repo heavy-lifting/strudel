@@ -54,6 +54,9 @@ export const SIDEBAR: Sidebar = {
     ],
   },
   en: {
+    'Society of Explorers': [
+        { text: 'Workshop', link: 'workshop/soc-of-ex' }
+    ],
     Presentation: [
       { text: 'What is Strudel?', link: 'workshop/getting-started' },
       { text: 'Showcase', link: 'intro/showcase' },
@@ -68,6 +71,8 @@ export const SIDEBAR: Sidebar = {
       { text: 'Pattern Effects', link: 'workshop/pattern-effects' },
       { text: 'Recap', link: 'workshop/recap' },
       { text: 'Workshop in German', link: 'de/workshop/getting-started' },
+      { text: 'Society of Explorers Workshop', link: 'workshop/soc-of-ex' },
+      { text: 'From-Scratch Workshop', link: 'workshop/from-scratch'}
     ],
     'Making Sound': [
       { text: 'Samples', link: 'learn/samples' },

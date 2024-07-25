@@ -2,7 +2,7 @@
 :root {
   --docsearch-primary-color: var(--lineHighlight);
   --docsearch-logo-color: var(--foreground);
-  --docsearch-container-background: rgba(110, 110, 110, 0.8);
+  --docsearch-container-background: rgba(8, 248, 248, 0.8);
   --docsearch-modal-shadow: none;
   --docsearch-text-color: var(--foreground);
   --docsearch-highlight-color: var(--foreground);
