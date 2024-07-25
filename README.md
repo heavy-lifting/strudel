@@ -1,6 +1,6 @@
 # strudel
 
-**this is a fork of strudel for the [soc-of-ex.club](https://soc-of-ex.club/) website - feel free to check out the new worksheets on the learn pages!**
+**this is a fork of [strudel](https://github.com/tidalcycles/strudel) for the [soc-of-ex.club](https://soc-of-ex.club/) website - feel free to check out the new worksheets on the learn pages!**
 
 [![Strudel test status](https://github.com/tidalcycles/strudel/actions/workflows/test.yml/badge.svg)](https://github.com/tidalcycles/strudel/actions)
 
