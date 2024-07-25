@@ -1,5 +1,7 @@
 # strudel
 
+**this is a fork of strudel for the soc-of-ex.club website - feel free to check out the new worksheets on the learn pages!**
+
 [![Strudel test status](https://github.com/tidalcycles/strudel/actions/workflows/test.yml/badge.svg)](https://github.com/tidalcycles/strudel/actions)
 
 An experiment in making a [Tidal](https://github.com/tidalcycles/tidal/) using web technologies. This software is a bit more stable now, but please continue to tread carefully.
