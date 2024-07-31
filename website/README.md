@@ -8,7 +8,7 @@ It includes the REPL live coding editor and the documentation site.
 ```bash
 # from project root
 npm run setup
-npm run repl
+npm run replnpm
 ```
 
 ## Build

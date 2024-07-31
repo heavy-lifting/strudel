@@ -54,14 +54,16 @@ export const SIDEBAR: Sidebar = {
     ],
   },
   en: {
-    'Society of Explorers': [
-        { text: 'Workshop', link: 'workshop/soc-of-ex' }
+    'Cyber Cafe': [
+        { text: 'Workshop', link: 'workshop/soc-of-ex' },
+        { text: 'Society of Explorers', link: 'workshop/cyber-cafe'}
     ],
     Presentation: [
       { text: 'What is Strudel?', link: 'workshop/getting-started' },
       { text: 'Showcase', link: 'intro/showcase' },
       { text: 'Blog', link: 'blog' },
       { text: 'Community Bakery', link: 'bakery' },
+      { text: 'Linney Creative Forum', link: 'workshop/linney-talk'}
     ],
     Workshop: [
       // { text: 'Getting Started', link: 'workshop/getting-started' },

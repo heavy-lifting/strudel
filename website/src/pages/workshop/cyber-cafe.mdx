@@ -1,0 +1,143 @@
+---
+title: Cyber Cafe
+layout: ../../layouts/MainLayout.astro
+---
+
+import { MiniRepl } from '@src/docs/MiniRepl';
+import Box from '@components/Box.astro';
+import QA from '@components/QA';
+
+# Cyber cafe
+
+<MiniRepl client:visible tune={`samples('github:heavy-lifting/soc-ex')
+//sample:
+$:n("14").sound("long")
+//sample:
+$:n("6").sound("long")
+.room("<0 0 1 2>").pan("0 1")
+.vowel("<a o p>")
+.sound("per").every(3,rev)
+//beat:
+$:sound("bb bd sn hh hh bd sn bb sd hh bd sd hh sd")
+.room("<0.5>").pan("1 0"). vowel("e o")
+//sample:
+$:n("9").sound("long")
+.vowel("o a e").room("<0 2 0 1 3 1>")
+.sound("per").slow("1 2")
+//sample:
+$:n("2").sound("long")
+.room("<3 0 2 0 3 1>").pan("1 1 0 1").vowel("<i e i>")
+//beat:
+$:sound("bd*4").vowel("<i e>")
+.room("<2 3>")
+//sample:
+$:sound("piano piano:1*3 piano")
+.vowel("i e a").every(3,rev)
+`} dirt/>
+
+<MiniRepl client:visible tune={`samples('github:heavy-lifting/soc-ex')
+
+$:n("10 11 14*3 15 16*2").sound("tone")
+
+$:n("24/2").sound("text").every(4, rev())
+
+$:n("13/4").sound("long").loopAt("1")
+`} dirt/>
+
+<MiniRepl client:visible tune={`$: sound("shaker_large*3 ~ metal [hh sax piano] shaker_large*3 ~ metal [snare_rim] shaker_large*3 ~ metal [space/3] gm_synth_drum*3 ~ gm_fx_rain [gm_glockebspiel]")
+`} dirt/>
+
+<MiniRepl client:visible tune={`$:sound("insect crow jazz*98 harp").vowel("<i o u>").room("3")
+$:note("c2 8").sound("gm_electric_bass_pick gm_distortion_guitar").room("<4 9 6>")
+$:note("4").sound("gm_fx_crystal").vowel("<o i u>")
+$:sound("[bd bd] hh")
+$:note("< 9 1 5 3>").sound("<gm_electric_guitar_clean*15 gm_fx_goblins>")
+$:note("8").sound("gm_cello")
+$:sound("metal").vowel("< u i >").room("7")
+`} dirt/>
+
+<MiniRepl client:visible tune={`samples('github:heavy-lifting/soc-ex')
+$: stack  (n("5 5 5 5").sound("per"),
+       n("4 <[66 7] 10> ~ 10").sound("tone").every(4, slow(1)),
+       n("9 9 9 9").sound("bassdrum1"),
+       n("11 11 11 11 11 11*8 11 11 11 13 13 11*4 11 11 11 11").sound("per"),
+       n("5").sound("cowbell"),
+       n("2").sound("didgeridoo")).gain("1")
+
+ $: n("1 1 1*9 7 8 1 1 2 1 1*5 6 1 1 1 1 5 ").sound("shaker_small")
+ $: n("6*2 4 6 ~ 6 4 ~ 6").sound("bassdrum1")
+`} dirt/>
+
+<MiniRepl client:visible tune={`
+// 1:
+$: sound("n*3:sp bd hh sp bd [bd hh*30]")
+$: sound("[n*3:sp bd hh sp bd [bd hh*30]] ,<  sp sp [hh*30 hh*40 hh*20]> ~ casio:5sp")
+`} dirt/>
+
+
+<MiniRepl client:visible tune={`
+// 2:
+$: sound("n*3:sp bd hh sp bd [bd hh*30]")
+$: sound("hh hh hh").when("<0 1>/2", x=>x.sub("5")).note()
+`} dirt/>
+
+
+<MiniRepl client:visible tune={`
+// 2:
+$: sound("n*3:sp bd hh sp bd [bd hh*30]")
+$: sound("hh hh hh").when("<0 1>/2", x=>x.sub("5")).note()
+`} dirt/>
+
+
+<MiniRepl client:visible tune={`
+samples('github:heavy-lifting/soc-ex')
+//sample:
+$:n("7").sound("text")
+//sample:
+//beat:
+$:sound("bd bd bd bd")
+.vowel("o")
+$:sound("bd bd bb sd*2")
+.vowel("u i o o i").every(3,rev).vowel("o i o u")
+$:sound("sn bd*2 bb sn")
+.vowel("i").pan("1 1 0 1")
+$:sound("gm_electric_bass_pick ~ ~ ~ <gm_electric_bass_pick gm_electric_bass_pick3> gm_electric_bass_pick gm_electric_bass_pick2 ~")
+.vowel("u i o o i").every(3,rev)
+$:sound("gm_drawbar_organ*16")
+.vowel("o i o u")
+$:sound("gm_pad_poly*4 gm_pad_poly gm_pad_poly*2 [~ gm_pad_poly]")
+.vowel("a e a").every(4,rev)
+$:sound("gm_cello")
+.vowel("<o e u>")
+$:n("9 10*2 9 [~ 2]").sound("per")
+$:sound("gm_distortion_guitar?")
+$:sound("gm_blown_bottle*2 gm_blown bottle")
+.pan("0 1 1 0 1")
+`} dirt/>
+
+<MiniRepl client:visible tune={`
+samples('github:heavy-lifting/soc-ex')
+//sample:
+$:n("14").sound("long")
+//sample:
+$:n("6").sound("long")
+.room("<0 0 1 2>").pan("0 1")
+.vowel("<a o p>")
+.sound("per").every(3,rev)
+//beat:
+$:sound("bb bd sn hh hh bd sn bb sd hh bd sd hh sd")
+.room("<0.5>").pan("1 0"). vowel("e o")
+//sample:
+$:n("9").sound("long")
+.vowel("o a e").room("<0 2 0 1 3 1>")
+.sound("per").slow("1 2")
+//sample:
+$:n("2").sound("long")
+.room("<3 0 2 0 3 1>").pan("1 1 0 1").vowel("<i e i>")
+//beat:
+$:sound("bd*4").vowel("<i e>")
+.room("<2 3>")
+//sample:
+$:sound("piano piano:1*3 piano")
+.vowel("i e a").every(3,rev)
+`} dirt/>
