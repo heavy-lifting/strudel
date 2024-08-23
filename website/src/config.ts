@@ -56,7 +56,8 @@ export const SIDEBAR: Sidebar = {
   en: {
     'Cyber Cafe': [
         { text: 'Workshop', link: 'workshop/soc-of-ex' },
-        { text: 'Society of Explorers', link: 'workshop/cyber-cafe'}
+        { text: 'Society of Explorers', link: 'workshop/cyber-cafe'},
+        { text: 'New Tricks', link: 'workshop/new-tricks'}
     ],
     Presentation: [
       { text: 'What is Strudel?', link: 'workshop/getting-started' },
